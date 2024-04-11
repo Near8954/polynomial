@@ -14,9 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        window/mainwindow.cpp
+        window/mainwindow.h
+        window/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -38,10 +38,10 @@ else()
     else()
         add_executable(polynomial
             ${PROJECT_SOURCES}
-            polynomial.h
-            polynomial.cpp
-            node.h node.cpp
-            base.h base.cpp
+            polynomial/polynomial.h
+            polynomial/polynomial.cpp
+            node/node.h node/node.cpp
+            base/base.h base/base.cpp
         )
     endif()
 endif()
