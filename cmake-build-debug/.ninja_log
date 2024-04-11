@@ -1,0 +1,19 @@
+# ninja log v5
+0	249	1712817875734480297	polynomial_autogen/timestamp	ee084e0627cd9c9b
+0	249	1712817875734480297	polynomial_autogen/mocs_compilation.cpp	ee084e0627cd9c9b
+0	249	1712817875734480297	/home/near/polynomial/cmake-build-debug/polynomial_autogen/timestamp	ee084e0627cd9c9b
+0	249	1712817875734480297	/home/near/polynomial/cmake-build-debug/polynomial_autogen/mocs_compilation.cpp	ee084e0627cd9c9b
+250	674	1712817876164471725	CMakeFiles/polynomial.dir/polynomial.cpp.o	5cd39fafc30c0c4a
+251	795	1712817876287802605	CMakeFiles/polynomial.dir/base.cpp.o	6f5b9417610dee8c
+250	974	1712817876464465757	CMakeFiles/polynomial.dir/node.cpp.o	24fa62dc6ed6ad22
+250	2088	1712817877577776974	CMakeFiles/polynomial.dir/polynomial_autogen/mocs_compilation.cpp.o	b79eff32f655241f
+249	2109	1712817877601109844	CMakeFiles/polynomial.dir/main.cpp.o	5f27c83511441541
+249	2242	1712817877731107266	CMakeFiles/polynomial.dir/mainwindow.cpp.o	94fb74247af430a
+2242	2599	1712817878084433595	polynomial	b3942d5858229ce2
+4	25	1712818023565460051	polynomial_autogen/timestamp	ee084e0627cd9c9b
+4	25	1712818023565460051	polynomial_autogen/mocs_compilation.cpp	ee084e0627cd9c9b
+4	25	1712818023565460051	/home/near/polynomial/cmake-build-debug/polynomial_autogen/timestamp	ee084e0627cd9c9b
+4	25	1712818023565460051	/home/near/polynomial/cmake-build-debug/polynomial_autogen/mocs_compilation.cpp	ee084e0627cd9c9b
+28	552	1712818024088786966	CMakeFiles/polynomial.dir/node.cpp.o	24fa62dc6ed6ad22
+28	2082	1712818025618768287	CMakeFiles/polynomial.dir/mainwindow.cpp.o	94fb74247af430a
+2082	2478	1712818026012096829	polynomial	b3942d5858229ce2

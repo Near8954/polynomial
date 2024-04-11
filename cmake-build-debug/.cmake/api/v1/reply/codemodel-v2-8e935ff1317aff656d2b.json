@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-2980ed87964d2e44e319.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "polynomial",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "polynomial::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-polynomial-Debug-0ad9109d758ba220d899.json",
+					"name" : "polynomial",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "polynomial_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-polynomial_autogen-Debug-02cf3a879d7184f6b931.json",
+					"name" : "polynomial_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "polynomial_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-polynomial_autogen_timestamp_deps-Debug-5c4fc0f316f7e5c5d92a.json",
+					"name" : "polynomial_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/near/polynomial/cmake-build-debug",
+		"source" : "/home/near/polynomial"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
