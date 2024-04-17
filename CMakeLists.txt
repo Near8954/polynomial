@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(polynomial VERSION 0.1 LANGUAGES CXX)
+project(src/polynomial VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,13 +14,13 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        window/mainwindow.cpp
-        window/mainwindow.h
-        window/mainwindow.ui
+        src/window/mainwindow.cpp
+        src/window/mainwindow.h
+        src/window/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(polynomial
+    qt_add_executable(src/polynomial
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
@@ -38,10 +38,10 @@ else()
     else()
         add_executable(polynomial
             ${PROJECT_SOURCES}
-            polynomial/polynomial.h
-            polynomial/polynomial.cpp
-            node/node.h node/node.cpp
-            base/base.h base/base.cpp
+                src/polynomial/polynomial.h
+                src/polynomial/polynomial.cpp
+                src/node/node.h src/node/node.cpp
+                src/base/base.h src/base/base.cpp
         )
     endif()
 endif()
@@ -70,5 +70,5 @@ install(TARGETS polynomial
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(polynomial)
+    qt_finalize_executable(src/polynomial)
 endif()

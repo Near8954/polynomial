@@ -25,8 +25,10 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QTextEdit *textEdit;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *add_polynomial_button;
+    QPushButton *remove_polynomial_button;
+    QPushButton *sum_button;
+    QPushButton *pushButton_4;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -41,16 +43,22 @@ public:
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
         textEdit->setGeometry(QRect(10, 10, 401, 541));
         textEdit->setTextInteractionFlags(Qt::NoTextInteraction);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(420, 10, 171, 41));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(620, 10, 171, 41));
+        add_polynomial_button = new QPushButton(centralwidget);
+        add_polynomial_button->setObjectName(QString::fromUtf8("add_polynomial_button"));
+        add_polynomial_button->setGeometry(QRect(420, 10, 171, 41));
+        remove_polynomial_button = new QPushButton(centralwidget);
+        remove_polynomial_button->setObjectName(QString::fromUtf8("remove_polynomial_button"));
+        remove_polynomial_button->setGeometry(QRect(620, 10, 171, 41));
+        sum_button = new QPushButton(centralwidget);
+        sum_button->setObjectName(QString::fromUtf8("sum_button"));
+        sum_button->setGeometry(QRect(420, 60, 171, 41));
+        pushButton_4 = new QPushButton(centralwidget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setGeometry(QRect(620, 60, 171, 41));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 23));
+        menubar->setGeometry(QRect(0, 0, 800, 24));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -64,8 +72,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "add polynomial", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "remove polynomial", nullptr));
+        add_polynomial_button->setText(QCoreApplication::translate("MainWindow", "add polynomial", nullptr));
+        remove_polynomial_button->setText(QCoreApplication::translate("MainWindow", "remove polynomial", nullptr));
+        sum_button->setText(QCoreApplication::translate("MainWindow", "sum", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };
