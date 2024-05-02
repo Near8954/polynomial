@@ -42,6 +42,7 @@ else()
                 src/polynomial/polynomial.cpp
                 src/node/node.h src/node/node.cpp
                 src/base/base.h src/base/base.cpp
+                dialog.h dialog.cpp dialog.ui
         )
     endif()
 endif()

@@ -92,7 +92,7 @@
      <string>load</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="equal_button_2">
+   <widget class="QPushButton" name="value">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -102,7 +102,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>value</string>
     </property>
    </widget>
    <widget class="QPushButton" name="multiply">
@@ -126,6 +126,32 @@
       <width>401</width>
       <height>531</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="multiply_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>160</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>get derivative</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="multiply_3">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>160</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>roots</string>
     </property>
    </widget>
   </widget>

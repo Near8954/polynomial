@@ -1,15 +1,17 @@
 #include "node.h"
 
-std::pair<double, std::vector<double>> check(const std::string &s) {
+const int ALPHABET_SIZE = 26;
+
+std::pair<int64_t, std::vector<int64_t>> check(const std::string &s) {
     double k = 1.0;
     if (s.empty()) {
-        return {0, std::vector<double>(26)};
+        return {0, std::vector<int64_t>(ALPHABET_SIZE, 0)};
     }
     std::string num;
     int state = 0;
     bool sign = false;
     char var = 'Z';
-    std::vector<double> pows;
+    std::vector<int64_t> pows;
     pows.resize(26);
     try {
         for (char i: s) {
@@ -25,7 +27,7 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
                         sign = !sign;
                     }
                 } else {
-                    throw wrong_monomial("unexpected symbol ", i);
+                    throw WrongMonomial("unexpected symbol ", i);
                 }
             } else if (state == 1) {
                 if (isdigit(i)) {
@@ -37,13 +39,13 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
                     var = i;
                     num.clear();
                 } else if (i == '-' || i == '+') {
-                    throw wrong_monomial("incorrect sign place ", i);
+                    throw WrongMonomial("incorrect sign place ", i);
                 } else {
-                    throw wrong_monomial("unexpected symbol ", i);
+                    throw WrongMonomial("unexpected symbol ", i);
                 }
             } else if (state == 2) {
                 if (isdigit(i)) {
-                    throw wrong_monomial("expected num found ", i);
+                    throw WrongMonomial("expected num found ", i);
                 } else if (i >= 'a' && i <= 'z') {
                     if (num.empty()) {
                         pows[var - 'a'] += 1;
@@ -55,9 +57,9 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
                 } else if (i == '^') {
                     state = 3;
                 } else if (i == '-' || i == '+') {
-                    throw wrong_monomial("incorrect sign place", i);
+                    throw WrongMonomial("incorrect sign place", i);
                 } else {
-                    throw wrong_monomial("unexpected symbol ", i);
+                    throw WrongMonomial("unexpected symbol ", i);
                 }
             } else if (state == 3) {
                 if (isdigit(i)) {
@@ -65,18 +67,18 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
                 } else if (i >= 'a' && i <= 'z') {
                     state = 2;
                     if (num.empty()) {
-                        throw wrong_monomial("var in power ", i);
+                        throw WrongMonomial("var in power ", i);
                     } else {
                         pows[var - 'a'] += std::stoi(num);
                         var = i;
                         num.clear();
                     }
                 } else if (i == '^') {
-                    throw wrong_monomial("double power ", i);
+                    throw WrongMonomial("double power ", i);
                 } else if (i == '-' || i == '+') {
-                    throw wrong_monomial("incorrect sign place", i);
+                    throw WrongMonomial("incorrect sign place", i);
                 } else {
-                    throw wrong_monomial("unexpected symbol ", i);
+                    throw WrongMonomial("unexpected symbol ", i);
                 }
             }
         }
@@ -84,7 +86,7 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
             k = std::stoi(num);
         }
         if (state == 3 && num.empty()) {
-            throw wrong_monomial("incorrect power", 'Z');
+            throw WrongMonomial("incorrect power", 'Z');
         }
         if (num.empty() && var != 'Z') {
             pows[var - 'a'] += 1;
@@ -95,66 +97,70 @@ std::pair<double, std::vector<double>> check(const std::string &s) {
         if (sign) {
             k *= -1;
         }
-    } catch (const wrong_monomial &mn) {
+    } catch (const WrongMonomial &mn) {
         throw;
     }
     return {k, pows};
 }
 
-
-
-node::node() {
-    powers.resize(26);
-    k = 1.0;
+Node::Node() {
+    powers.resize(ALPHABET_SIZE);
+    coefficient = 1.0;
     prev = nullptr;
     next = nullptr;
 }
 
-node::node(const node &t) {
-    k = t.k;
+Node::Node(const Node &t) {
+    coefficient = t.coefficient;
     powers = t.powers;
     prev = t.prev;
     next = t.next;
 };
 
-node::node(std::string s) {
+Node::Node(std::string s) {
     prev = nullptr;
     next = nullptr;
-    powers.resize(26);
+    powers.resize(ALPHABET_SIZE);
     auto nd(check(s));
     powers = nd.second;
-    k = nd.first;
+    coefficient = nd.first;
 };
 
-
-
-std::string node::to_string() {
-    std::string ans;
-    if (k != 1) {
-        ans += std::to_string((int)this->k);
+static int64_t sum(std::vector<int64_t> &v) {
+    int ans = 0;
+    for (auto e: v) {
+        ans += e;
     }
-    for (int i = 0; i < 26; ++i) {
+    return ans;
+}
+
+std::string Node::toString() {
+    std::string ans;
+    if (coefficient != 1 || (sum(powers) == 0)) {
+        ans += std::to_string((int) this->coefficient);
+    }
+    for (int i = 0; i < ALPHABET_SIZE; ++i) {
         if (this->powers[i] != 0) {
             ans += char(i + 'a');
             if (this->powers[i] != 1) {
                 ans += '^';
-                ans += std::to_string((int)this->powers[i]);
+                ans += std::to_string((int) this->powers[i]);
             }
         }
     }
     return ans;
 }
 
-bool node::operator<(node &nd) {
+bool Node::operator<(Node &nd) {
     for (int i = 0; i < 26; ++i) {
         if (this->powers[i] < nd.powers[i]) return true;
         else if (this->powers[i] > nd.powers[i]) return false;
     }
-    return (this->k < nd.k);
+    return (this->coefficient < nd.coefficient);
 }
 
-bool node::operator==(node &nd) {
-    if (this->k != nd.k) {
+bool Node::operator==(Node &nd) {
+    if (this->coefficient != nd.coefficient) {
         return false;
     }
     for (int i = 0; i < 26; ++i) {
@@ -165,33 +171,58 @@ bool node::operator==(node &nd) {
     return true;
 }
 
-bool node::operator!=(node &nd) {
+bool Node::operator!=(Node &nd) {
     return !(*this == nd);
 }
 
-
-bool node::operator>(node &nd) {
+bool Node::operator>(Node &nd) {
     return (!(*this < nd) && !(*this == nd));
 }
 
-bool node::operator<=(node &nd) {
+bool Node::operator<=(Node &nd) {
     return ((*this < nd) || (*this == nd));
 }
 
-node node::operator*(node &nd) {
-    node ans;
+Node Node::operator*(Node &nd) {
+    Node ans;
     for (int i = 0; i < powers.size(); ++i) {
         ans.powers[i] += powers[i];
     }
     for (int i = 0; i < nd.powers.size(); ++i) {
         ans.powers[i] += nd.powers[i];
     }
-    ans.k = k * nd.k;
-    if (ans.k == 0) {
+    ans.coefficient = coefficient * nd.coefficient;
+    if (ans.coefficient == 0) {
         ans.powers.clear();
     }
     return ans;
 }
+
+Node Node::getDerivative(char x) {
+    Node ans;
+    ans.coefficient = coefficient;
+    if (!powers[x - 'a']) {
+        ans.coefficient = 0;
+        return ans;
+    }
+    ans.powers = powers;
+    ans.coefficient *= ans.powers[x - 'a'];
+    --ans.powers[x - 'a'];
+    return ans;
+}
+
+Node Node::operator/(Node &nd) {
+    Node ans;
+    for (int i = 0; i < powers.size(); ++i) {
+        ans.powers[i] = powers[i] - nd.powers[i];
+    }
+    ans.coefficient = coefficient / nd.coefficient;
+    if (ans.coefficient == 0) {
+        ans.powers.clear();
+    }
+    return ans;
+}
+
 
 
 /*std::ostream &operator<<(std::ostream &os, const node &nd) {

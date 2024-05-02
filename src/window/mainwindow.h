@@ -37,6 +37,12 @@ private slots:
 
     void on_save_clicked();
 
+    void on_value_clicked();
+
+    void on_multiply_3_clicked();
+
+    void on_multiply_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     base db;

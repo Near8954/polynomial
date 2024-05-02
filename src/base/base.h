@@ -1,25 +1,27 @@
 #ifndef BASE_H
 #define BASE_H
+
 #include "../polynomial/polynomial.h"
 
 class base {
 public:
-    void insert_back(polynomial *&pol);
+    void insert_back(Polynomial *&pol);
 
-    void remove(polynomial *&pol);
+    void remove(Polynomial *&pol);
 
-    polynomial* get(int id);
+    Polynomial *get(int id);
 
-    polynomial* get_head();
+    Polynomial *get_head();
 
     int size() {
         return sz;
     }
 
-    std::string to_string();
+    std::string toString();
+
 private:
-    polynomial* head = nullptr;
-    polynomial* tail = nullptr;
+    Polynomial *head = nullptr;
+    Polynomial *tail = nullptr;
     int sz = 0;
 };
 

@@ -3,76 +3,52 @@
 
 #include <string>
 #include "../node/node.h"
-
-class polynomial {
+class Polynomial {
 public:
-    polynomial();
+    Polynomial();
+    ~Polynomial();
+    explicit Polynomial(std::string s);
+    Polynomial(const Polynomial &pol);
 
-    explicit polynomial(std::string s);
+    void insert_back(Node *&e);
+    void insert_back(const Polynomial& pol);
+    void remove(Node *&it);
+    void clear();
 
-    polynomial(const polynomial &pol);
+    void sort();
+    void normalize();
 
-    ~polynomial();
+    int64_t getValueInPoint(std::vector<int64_t> &vars);
+    Polynomial getDerivative(int n, char x);
 
-    void insert_back(node *&e); // TODO check sz parameter in this function
+    Polynomial operator+(const Polynomial &pol);
+    Polynomial operator*(const Polynomial &pol);
+    Polynomial operator-(const Polynomial &pol);
+    Polynomial operator/(Polynomial pol);
+    Polynomial& operator=(const Polynomial &pol);
+    bool operator==(const Polynomial &pol);
 
-    void insert_back(const polynomial& pol);
+    std::vector<int64_t> getRoots();
+    std::string toString();
 
-    void polysorb();
+    void setNext(Polynomial *&pol);
+    void setNextNull();
+    void setPrev(Polynomial *&pol);
+    void setPrevNull();
 
-    void normalize(); // TODO check sz parameter in this function
+    Polynomial *getNext();
+    Polynomial *getPrev();
 
-    void remove(node *&it);
+    Node *getHead();
+    Node *getTail();
 
-    polynomial operator+(const polynomial &pol);
-
-    polynomial operator*(const polynomial &pol);
-
-    bool operator==(const polynomial &pol);
-
-    std::string to_string();
-
-    friend void mergeSort(node *&L, int sz);
-
-    friend node *merge(node *&L, node *&r);
-
-    //friend std::ostream &operator<<(std::ostream &os, const polynomial &p);
-
-    void set_next(polynomial *&pol) {
-        next = pol;
-    }
-
-    void set_next_null() {
-        next = nullptr;
-    }
-
-    void set_prev(polynomial *&pol) {
-        prev = pol;
-    }
-
-    void set_prev_null() {
-        prev = nullptr;
-    }
-
-    polynomial *get_next() {
-        return next;
-    }
-
-    polynomial *get_prev() {
-        return prev;
-    }
-
-    int size() {
-        return sz;
-    }
+    int size();
 
 private:
-    node *head = nullptr;
-    node *tail = nullptr;
-    polynomial *next = nullptr;
-    polynomial *prev = nullptr;
+    Node *head = nullptr;
+    Node *tail = nullptr;
+    Polynomial *next = nullptr;
+    Polynomial *prev = nullptr;
     int sz = 0;
 };
-
-
 #endif //POLYNOMIAL_POLYNOMIAL_H

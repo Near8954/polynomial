@@ -2,46 +2,53 @@
 #define NODE_H
 
 #include <string>
+#include <utility>
 #include <vector>
 #include <iostream>
-struct wrong_monomial {
-    wrong_monomial(std::string s, char ch) {
-        error_type = s;
+#include <set>
+#include <cstdint>
+
+struct WrongMonomial {
+    explicit WrongMonomial(std::string s, char ch) {
+        errorType = std::move(s);
         c = ch;
     }
 
-    std::string error_type;
+    std::string errorType;
     char c = 'Z';
 };
 
-struct node {
-    node();
+struct Node {
+    Node();
 
-    node(std::string s);
+    explicit Node(std::string s);
 
-    node(const node &t);
+    Node(const Node &t);
 
-    ~node() = default;
+    ~Node() = default;
 
-    bool operator<(node &nd);
+    bool operator<(Node &nd);
 
-    bool operator==(node &nd);
+    bool operator==(Node &nd);
 
-    bool operator!=(node &nd);
+    bool operator!=(Node &nd);
 
-    node operator*(node &nd);
+    bool operator>(Node &nd);
 
-    bool operator>(node &nd);
+    bool operator<=(Node &nd);
 
-    bool operator<=(node &nd);
+    Node operator*(Node &nd);
 
-    std::string to_string();
+    Node operator/(Node &nd);
 
-    double k = 1;
-    std::vector<double> powers;
-    node *prev = nullptr;
-    node *next = nullptr;
+    Node getDerivative(char x);
+
+    std::string toString();
+
+    int64_t coefficient = 1;
+    std::vector<int64_t> powers;
+    Node *prev = nullptr;
+    Node *next = nullptr;
 };
-
 
 #endif // NODE_H
