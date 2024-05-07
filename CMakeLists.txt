@@ -20,7 +20,7 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(src/polynomial
+    qt_add_executable(./src/polynomial/polynomial.cpp
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )

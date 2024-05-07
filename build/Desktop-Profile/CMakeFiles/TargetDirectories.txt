@@ -1,0 +1,9 @@
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/polynomial.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/edit_cache.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/rebuild_cache.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/list_install_components.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/install.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/install/local.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/install/strip.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/polynomial_autogen_timestamp_deps.dir
+/home/near/programming/polynomial/build/Desktop-Profile/CMakeFiles/polynomial_autogen.dir
